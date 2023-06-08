@@ -4,7 +4,7 @@
   <mat-form-field>
    
     <mat-label>Filter</mat-label>
-    <input matInput (keyup)="applyFilter($event)" placeholder="name, usuername, email, etc" #input class="bg-white">
+    <input matInput (keyup)="applyFilter($event)" placeholder="name, username, email, etc" #input class="bg-white">
   </mat-form-field>
   <button routerLink="/AddUsers" mat-raised-button class="float-end mb-3 bg-primary">Crear</button>
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z10">
