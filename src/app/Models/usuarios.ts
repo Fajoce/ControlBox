@@ -7,5 +7,6 @@ export interface Usuarios {
     website: string,
     address?: object,
     company?:object,
-    geo?: object
+    geo?: object,
+  
 }

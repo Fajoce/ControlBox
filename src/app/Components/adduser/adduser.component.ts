@@ -77,14 +77,14 @@ export class AdduserComponent {
       this.userservice.addUsers(user).subscribe(data=>{
         console.log(data);
         this.router.navigate(['/Usuarios']);
-      })
+      }, err=> console.log(err))
       }
       
       EditUser(id:number, user: Usuarios){
         this.userservice.updateUsers(id,user).subscribe(data=>{
           console.log(data);
           this.router.navigate(['/Usuarios']);  
-        })
+        }, err=> console.log(err))
       }
 
 }
