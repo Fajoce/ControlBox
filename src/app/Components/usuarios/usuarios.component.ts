@@ -4,6 +4,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Usuarios } from 'src/app/Models/usuarios';
 import { UsuarioService } from 'src/app/service/usuario.service';
 import { ToastrService } from 'ngx-toastr';
+import { SpinnerService } from 'src/app/service/spinner-service.service';
 
 const users: Usuarios[] = [];
 
@@ -19,7 +20,8 @@ export class UsuariosComponent {
 
 
   constructor(private userservice: UsuarioService,
-    private toadstr: ToastrService){  
+    private toastr: ToastrService,
+    private spinnerService: SpinnerService){  
     }
    
     
@@ -30,12 +32,13 @@ export class UsuariosComponent {
     });
   }
   ngOnInit(){
+    this.spinnerService.callSpinner();
     this.getAllUsers();
     }
 
     deleteUsers(id:number){
       return this.userservice.deleteusers(id).subscribe(data=>{       
-       this.toadstr.success('Registro ' + id + ' eliminado con exito')
+       this.toastr.success('Registro ' + id + ' eliminado con exito')
       this.getAllUsers();
       })
     }
