@@ -26,10 +26,11 @@ export class UsuariosComponent {
    
     
   getAllUsers(){
+    debugger;
     this.userservice.getUsers().subscribe(res =>{
       console.log(res);
       this.dataSource.data = res;
-    });
+    }, err => console.log(err));
   }
   ngOnInit(){
     this.spinnerService.callSpinner();
@@ -39,8 +40,8 @@ export class UsuariosComponent {
     deleteUsers(id:number){
       return this.userservice.deleteusers(id).subscribe(data=>{       
        this.toastr.success('Registro ' + id + ' eliminado con exito')
-      this.getAllUsers();
-      })
+       this.getAllUsers();
+      }, err => console.log(err))
     }
 
     applyFilter(event: Event) {
