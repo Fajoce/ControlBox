@@ -16,17 +16,12 @@ export class UsuariosComponent {
   displayedColumns: string[] = ['id','name', 'username','email','phone','website','address','acciones'];
   dataSource = new MatTableDataSource<Usuarios>(users);
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @Output() mensaje: EventEmitter<string>;
+
 
   constructor(private userservice: UsuarioService,
-    private toadstr: ToastrService){
-      this.mensaje = new EventEmitter();
+    private toadstr: ToastrService){  
     }
-
-    emitirMensaje() {
-    // Usando la variable emitimos el valor que queremos enviar
-    this.mensaje.emit("The current Date is:" + Date.now);
-  }
+   
     
   getAllUsers(){
     this.userservice.getUsers().subscribe(res =>{
