@@ -5,7 +5,9 @@ using Angular material as main Stylizer also Boostrap y CSS
 MVC Arquitect
 Models
 View
-Controller
+Controller (Services)
+La comunicacion entre compoentes la realice utilizando * Ruta Parametro: Desde el listado en la opcion de ver envio el id del usario 
+al compoennete agregar usuario para que muestre los datos correspondientes.
 
 ## Development server
 
