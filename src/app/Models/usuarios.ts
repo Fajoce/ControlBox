@@ -6,5 +6,6 @@ export interface Usuarios {
     phone: string,
     website: string,
     address?: object,
-    company?:object
+    company?:object,
+    geo?: object
 }
