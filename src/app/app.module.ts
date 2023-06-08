@@ -32,6 +32,7 @@ import { UsuariosComponent } from './Components/usuarios/usuarios.component';
 import { DetalleUsuariosComponent } from './Components/detalle-usuarios/detalle-usuarios.component';
 import { InterceptorService } from './service/interceptor.service';
 
+
 //Routes
 const routes: Routes = [
   { path: '', redirectTo: 'Usuarios', pathMatch: 'full' },
@@ -50,7 +51,8 @@ const routes: Routes = [
     MenuComponent,
     AdduserComponent,
     UsuariosComponent,
-    DetalleUsuariosComponent
+    DetalleUsuariosComponent,
+ 
   ],
   imports: [
     BrowserModule,
