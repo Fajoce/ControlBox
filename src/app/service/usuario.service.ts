@@ -10,7 +10,7 @@ import { environment } from 'src/environment/environment';
 })
 export class UsuarioService {
   baseUrl = environment.baseUrl;
-  readonly url = this.baseUrl;
+ 
 
   constructor(private httpclient: HttpClient) { }
 
