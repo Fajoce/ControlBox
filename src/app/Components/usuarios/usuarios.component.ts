@@ -1,8 +1,9 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Usuarios } from 'src/app/Models/usuarios';
 import { UsuarioService } from 'src/app/service/usuario.service';
+import { ToastrService } from 'ngx-toastr';
 
 const users: Usuarios[] = [];
 
@@ -12,12 +13,21 @@ const users: Usuarios[] = [];
   styleUrls: ['./usuarios.component.css']
 })
 export class UsuariosComponent {
-  displayedColumns: string[] = ['userId', 'userName','userAdress','acciones'];
+  displayedColumns: string[] = ['id','name', 'username','email','phone','website','address','acciones'];
   dataSource = new MatTableDataSource<Usuarios>(users);
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @Output() mensaje: EventEmitter<string>;
 
-  constructor(private userservice: UsuarioService){}
+  constructor(private userservice: UsuarioService,
+    private toadstr: ToastrService){
+      this.mensaje = new EventEmitter();
+    }
 
+    emitirMensaje() {
+    // Usando la variable emitimos el valor que queremos enviar
+    this.mensaje.emit("The current Date is:" + Date.now);
+  }
+    
   getAllUsers(){
     this.userservice.getUsers().subscribe(res =>{
       console.log(res);
@@ -29,9 +39,8 @@ export class UsuariosComponent {
     }
 
     deleteUsers(id:number){
-      return this.userservice.deleteusers(id).subscribe(data=>{
-       /*this.toast.success('Registro eliminado satisfactoriamente!');*/
-       alert('Registro ' + id + ' eliminado con exito')
+      return this.userservice.deleteusers(id).subscribe(data=>{       
+       this.toadstr.success('Registro ' + id + ' eliminado con exito')
       this.getAllUsers();
       })
     }

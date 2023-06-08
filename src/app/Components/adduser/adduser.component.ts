@@ -1,13 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, RouterLink,Route, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Usuarios } from 'src/app/Models/usuarios';
 import { UsuarioService } from 'src/app/service/usuario.service';
-
-interface Types {
-  value: number;
-  viewValue: string;
-}
 
 
 @Component({
@@ -18,26 +14,20 @@ interface Types {
 export class AdduserComponent {
   forms!: FormGroup
   id!:number;
-  titulo:string = 'Add Users';
-
-  types: Types[] = [
-    {value: 1, viewValue: 'Adm'},
-    {value: 2, viewValue: 'Limitado'},
-    {value: 3, viewValue: 'SuperAdm'},
-  ];
+  titulo:string = 'Add Users'; 
 
   constructor(private fg: FormBuilder, private userservice:
     UsuarioService,
     private activeRoute: ActivatedRoute,
-    private router: Router){
+    private router: Router,private toastr: ToastrService){
       this.forms = this.fg.group({
-        userName: ['', Validators.required],
-        userLastName : ['', Validators.required],
-        typeOfUserId:[0, Validators.required],
-        userAdress: [''],
-        userTelephone: [''],
-        userEmail:[''],
-        password:[]
+        name: ['', Validators.required],
+        username : ['', Validators.required],
+        email:['', Validators.required],
+        phone: [''],
+        website:[''],
+     
+        
     });
   this.id = Number(this.activeRoute.snapshot.paramMap.get('id'));
 
@@ -52,35 +42,35 @@ export class AdduserComponent {
   getUsers(id:number){
     this.userservice.getUsersById(id).subscribe(data=>{
     this.forms.patchValue({
-      userName: data.userName,
-      userLastName: data.userLastName,
-      typeOfUserId: data.typeOfUserId,
-      userAdress: data.userAdress,
-      userTelephone: data.userTelephone,
-      userEmail: data.userEmail,
-      password:data.password
+      name: data.name,
+      username: data.username,
+      email: data.email,
+      phone: data.phone,
+      website: data.website
+     
        })
     })
     }
 
     AddEditUser(){
       const user: Usuarios = {
-        userName : this.forms.value.userName,
-        userLastName : this.forms.value.userLastName,
-        userAdress: this.forms.value.userAdress,
-        typeOfUserId: this.forms.value.typeOfUserId,
-        userTelephone: this.forms.value.userTelephone,
-        userEmail: this.forms.value.userEmail,
-        password: this.forms.value.password
+        name : this.forms.value.name,
+        username : this.forms.value.username,
+        email: this.forms.value.email,
+        phone: this.forms.value.phone,
+        website : this.forms.value.website,
+        
       }
       if(this.id != 0){
-        user.userId = this.id,
+        user.id = this.id,
       this.EditUser(this.id,user)
-      alert('usario editado exitosamente!')
+      this.toastr.success('Usario editado exitosamente!')
+      //alert('usario editado exitosamente!')
       }
       else{
         this.AddUser(user);
-        alert('usario creado exitosamente!')
+        this.toastr.success('Usario Creado exitosamente!')
+        //alert('usario creado exitosamente!')
       }
       }
       AddUser(user:Usuarios){

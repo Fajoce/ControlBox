@@ -1,11 +1,10 @@
 export interface Usuarios {
-    userId?: number,
-    userName: string,
-    userLastName: string,
-    typeOfUserId: number,
-    typeOfUserName?: string,
-    userAdress: string,
-    userTelephone: string,
-    userEmail: string,
-    password:string
+    id?: number,
+    name: string,
+    username: string,
+    email: string,
+    phone: string,
+    website: string,
+    address?: object,
+    company?:object
 }

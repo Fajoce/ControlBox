@@ -7,7 +7,7 @@ import { Usuarios } from '../Models/usuarios';
   providedIn: 'root'
 })
 export class UsuarioService {
-  readonly url = 'https:/localhost:44303/api';
+  readonly url = 'https://jsonplaceholder.typicode.com';
 
   constructor(private httpclient: HttpClient) { }
 
@@ -15,15 +15,12 @@ export class UsuarioService {
   getUsers():Observable<any[]>{
     return this.httpclient.get<any[]>(this.url+'/users');
   }
-  //Get users By id
+  //Get user By id
   getUsersById(id:number):Observable<Usuarios>{
     return this.httpclient.get<Usuarios>(this.url+'/users/'+id);
   }
 
-    //Get users By name
-    getUsersName(name:string):Observable<Usuarios>{
-      return this.httpclient.get<Usuarios>(this.url+'/users/name/'+name);
-    }
+   
   //create users
   addUsers(data:any){
     return this.httpclient.post(this.url+'/users',data);
@@ -36,14 +33,5 @@ export class UsuarioService {
   deleteusers(id:number){
     return this.httpclient.delete(this.url+`/users/${id}`);
   }
-
-  //login
-  loginUser(data: Array<any>){
-    return this.httpclient.post(this.url+'/users/Logearse',{
-      userName:data[0],
-      password:data[1]
-    },{
-      responseType:'text',
-    });
-  } 
+  
 }

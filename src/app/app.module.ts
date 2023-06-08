@@ -19,6 +19,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatRadioModule} from '@angular/material/radio';
+import { ToastrModule, ToastContainerDirective } from 'ngx-toastr';
 
 
 
@@ -28,24 +29,20 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { AdduserComponent } from './Components/adduser/adduser.component';
 
-import { LoginComponent } from './Components/login/login.component';
+
 import { UsuariosComponent } from './Components/usuarios/usuarios.component';
 import { DetalleUsuariosComponent } from './Components/detalle-usuarios/detalle-usuarios.component';
-import { HomeComponent } from './Components/home/home.component';
-import { DetalleUsuariosLimitadoComponent } from './Components/detalle-usuarios-limitado/detalle-usuarios-limitado.component';
-import { UsuarioGuard } from './Gurads/usuario.guard';
+
+import { CookieService } from 'ngx-cookie-service';
 
 const routes :Routes = [
-  {path:'', redirectTo: 'Login', pathMatch: 'full'},
-  {path:'Home', component: HomeComponent},
-  {path: 'getUsuario/:id', component:DetalleUsuariosComponent},
-  {path: 'getUsuarios/:name', component:DetalleUsuariosLimitadoComponent},  
+  {path:'', redirectTo: 'Usuarios', pathMatch: 'full'}, 
+  {path: 'getUsuario/:id', component:DetalleUsuariosComponent},  
   {path:'Usuarios', component: UsuariosComponent},
   {path:'AddUsers', component : AdduserComponent },
   {path:'editUser/:id', component : AdduserComponent},
-  {path:'Login', component: LoginComponent},
   {path:'Menu', component: MenuComponent},
-  {path:'**', redirectTo: 'Home', pathMatch: 'full'}
+  {path:'**', redirectTo: 'Usaurios', pathMatch: 'full'}
 ]
 
 
@@ -53,12 +50,11 @@ const routes :Routes = [
   declarations: [
     AppComponent,    
     MenuComponent,
-    AdduserComponent,
-    LoginComponent, 
+    AdduserComponent,   
     UsuariosComponent,
     DetalleUsuariosComponent,
-    HomeComponent,
-    DetalleUsuariosLimitadoComponent
+  
+
   ],
   imports: [
     BrowserModule,
@@ -82,7 +78,8 @@ const routes :Routes = [
     MatDatepickerModule,
     MatButtonToggleModule,
     MatRadioModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    ToastrModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
