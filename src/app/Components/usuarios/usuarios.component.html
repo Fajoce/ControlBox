@@ -1,7 +1,6 @@
 <app-menu></app-menu>
 <div class="container">
-  <h2 class="bg-white"><marquee>Lista De Usuarios</marquee></h2>
-  <div *ngIf="spinnerService.isLoading| async" class="loader-container">
+   <div *ngIf="spinnerService.isLoading| async" class="loader-container">
     <mat-spinner style="top: 50%; left: 50%"></mat-spinner>
   </div>
   <mat-form-field>
