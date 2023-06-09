@@ -46,8 +46,8 @@ export class AdduserComponent {
       username: data.username,
       email: data.email,
       phone: data.phone,
-      website: data.website
-     
+      website: data.website,
+       
        })
     })
     }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { NgxSpinnerService } from 'ngx-spinner';
+import { BehaviorSubject } from 'rxjs';
 
 
 @Injectable({
@@ -7,13 +7,8 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 export class SpinnerService {
 
-  constructor(private spinnerservice: NgxSpinnerService) { }
+  constructor() { }
+public isLoading: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
 
-  public callSpinner(){
-    this.spinnerservice.show();
-  }
-
-  public stopSpinner(){
-    this.spinnerservice.hide();
-  }
+  
 }

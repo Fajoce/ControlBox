@@ -6,3 +6,8 @@ table {
     width: 100%; 
     background-color: aliceblue;  
   }
+  .loader-container{
+    position: center;
+    width: 100%;
+    z-index:99
+  }

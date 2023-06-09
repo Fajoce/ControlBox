@@ -21,19 +21,20 @@ export class UsuariosComponent {
 
   constructor(private userservice: UsuarioService,
     private toastr: ToastrService,
-    private spinnerService: SpinnerService){  
+    public spinnerService: SpinnerService){  
     }
    
     
   getAllUsers(){
-    debugger;
+    setTimeout(()=>{
     this.userservice.getUsers().subscribe(res =>{
       console.log(res);
       this.dataSource.data = res;
     }, err => console.log(err));
+  }, 3000)
   }
   ngOnInit(){
-    this.spinnerService.callSpinner();
+  
     this.getAllUsers();
     }
 

@@ -21,7 +21,8 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatRadioModule } from '@angular/material/radio';
 import { ToastrModule, ToastContainerDirective } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgxSpinnerModule } from 'ngx-spinner';
+import { MatProgressBarModule} from '@angular/material/progress-bar'
+import { MatProgressSpinnerModule} from '@angular/material/progress-spinner'
 //Components
 import { AppComponent } from './app.component';
 import { MenuComponent } from './Components/menu/menu.component';
@@ -78,11 +79,11 @@ const routes: Routes = [
     MatRadioModule,
     MatNativeDateModule,
     ToastrModule.forRoot(),
-    NgxSpinnerModule,
-    BrowserAnimationsModule
-
+    BrowserAnimationsModule,
+    MatProgressBarModule,
+    MatProgressSpinnerModule
   ],
-  exports:[NgxSpinnerModule],
+  exports:[],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi:true}],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA
