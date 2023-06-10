@@ -1,4 +1,3 @@
-<app-menu></app-menu>
 <div class="container">
    <div *ngIf="spinnerService.isLoading| async" class="loader-container">
     <mat-spinner style="top: 50%; left: 50%"></mat-spinner>
@@ -22,7 +21,7 @@
 
     <!-- User  -->
     <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef> User </th>
+      <th mat-header-cell *matHeaderCellDef> Name </th>
       <td mat-cell *matCellDef="let element"> {{element.name}} </td>
     </ng-container>
 

@@ -32,17 +32,23 @@ import { AdduserComponent } from './Components/adduser/adduser.component';
 import { UsuariosComponent } from './Components/usuarios/usuarios.component';
 import { DetalleUsuariosComponent } from './Components/detalle-usuarios/detalle-usuarios.component';
 import { InterceptorService } from './service/interceptor.service';
+import { NavComponent } from './nav/nav.component';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { HomeComponent } from './home/home.component';
 
 
 //Routes
 const routes: Routes = [
-  { path: '', redirectTo: 'Usuarios', pathMatch: 'full' },
+  { path: '', redirectTo: 'Home', pathMatch: 'full' },
   { path: 'getUsuario/:id', component: DetalleUsuariosComponent },
   { path: 'Usuarios', component: UsuariosComponent },
   { path: 'AddUsers', component: AdduserComponent },
   { path: 'editUser/:id', component: AdduserComponent },
-  { path: 'Menu', component: MenuComponent },
-  { path: '**', redirectTo: 'Usaurios', pathMatch: 'full' }
+  { path: 'Home', component: HomeComponent },
+  { path: '**', redirectTo: 'Home', pathMatch: 'full' }
 ]
 
 
@@ -53,6 +59,8 @@ const routes: Routes = [
     AdduserComponent,
     UsuariosComponent,
     DetalleUsuariosComponent,
+    NavComponent,
+    HomeComponent,
  
   ],
   imports: [
@@ -81,7 +89,11 @@ const routes: Routes = [
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
     MatProgressBarModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    LayoutModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatListModule
   ],
   exports:[],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi:true}],
